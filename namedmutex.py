@@ -1,4 +1,12 @@
-"""Named mutex handling (for Win32)."""
+"""Named mutex handling (for Win32).
+
+See README.md or https://github.com/benhoyt/namedmutex for a bit more
+documentation.
+
+This code is released under the new BSD 3-clause license:
+http://opensource.org/licenses/BSD-3-Clause
+
+"""
 
 import ctypes
 from ctypes import wintypes
