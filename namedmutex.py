@@ -108,5 +108,8 @@ class NamedMutex(object):
 
 if __name__ == '__main__':
     # Just test that acquire and release work.
+    print(ctypes.windll.kernel32.CreateMutexA)
+    print(ctypes.windll.kernel32.CreateMutexW)
+    print(ctypes.windll.kernel32.CreateMutexA == ctypes.windll.kernel32.CreateMutexW)
     with NamedMutex('test_mutex_123'):
         pass
