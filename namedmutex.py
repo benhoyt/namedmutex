@@ -104,3 +104,9 @@ class NamedMutex(object):
 
     def __exit__(self, exc_type, exc_val, exc_tb):
         self.release()
+
+
+if __name__ == '__main__':
+    # Just test that acquire and release work.
+    with NamedMutex('test_mutex_123'):
+        pass
