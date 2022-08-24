@@ -12,8 +12,8 @@ import ctypes
 from ctypes import wintypes
 
 # Create ctypes wrapper for Win32 functions we need, with correct argument/return types
-_CreateMutex = ctypes.windll.kernel32.CreateMutexW
-_CreateMutex.argtypes = [wintypes.LPCVOID, wintypes.BOOL, wintypes.LPCWSTR]
+_CreateMutex = ctypes.windll.kernel32.CreateMutex
+_CreateMutex.argtypes = [wintypes.LPCVOID, wintypes.BOOL, wintypes.LPCSTR]
 _CreateMutex.restype = wintypes.HANDLE
 
 _WaitForSingleObject = ctypes.windll.kernel32.WaitForSingleObject
