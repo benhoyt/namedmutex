@@ -1,0 +1,80 @@
+name: Tests
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build-linux:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        go: ['1.19', '1.18', '1.17', '1.16', '1.15']
+
+    name: Go ${{ matrix.go }} on Linux
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Go
+      uses: actions/setup-go@v2
+      with:
+        go-version: ${{ matrix.go }}
+
+    - name: Build and Test
+      run: |
+        gawk --version
+        go test -race ./...
+
+  build-windows:
+    runs-on: windows-latest
+
+    strategy:
+      matrix:
+        go: ['1.19', '1.15']
+
+    name: Go ${{ matrix.go }} on Windows
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Go
+      uses: actions/setup-go@v2
+      with:
+        go-version: ${{ matrix.go }}
+
+    - name: Install Gawk
+      run: choco install gawk
+
+    - name: Build and Test
+      run: |
+        gawk --version
+        go test -race ./...
+
+  build-macos:
+    runs-on: macos-latest
+
+    strategy:
+      matrix:
+        go: ['1.19', '1.15']
+
+    name: Go ${{ matrix.go }} on macOS
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Go
+      uses: actions/setup-go@v2
+      with:
+        go-version: ${{ matrix.go }}
+
+    - name: Install Gawk
+      run: brew install gawk
+
+    - name: Build and Test
+      run: |
+        gawk --version
+        go test -race ./...
